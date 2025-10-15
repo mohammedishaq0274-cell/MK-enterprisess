@@ -23,6 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Lazy-load non-critical images
+    try {
+        const imgs = document.querySelectorAll('img');
+        imgs.forEach(img => {
+            if (!img.hasAttribute('loading')) {
+                img.setAttribute('loading', 'lazy');
+            }
+            if (!img.hasAttribute('decoding')) {
+                img.setAttribute('decoding', 'async');
+            }
+        });
+    } catch (_) {}
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
